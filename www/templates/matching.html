@@ -1,0 +1,44 @@
+<ion-view view-title="VACCINE STRAIN">
+  <ion-content class="matching" has-bouncing="false">
+  	<div class="row nopadding">
+	  <div class="col-50 matching-header">
+	  	<p class="mt10p">Unique range of 22 vaccine strain</p>
+	  	<p>Deployed against the 7 fmd serotypes</p>
+		<div class="padding-top">	  	
+		  	<h5 class="checkbox-title">SEROTYPES</h5>
+			<div class="checkboxes">	
+			  	<ion-checkbox class="checkbox-dark" ng-change="getSeroPools(serotypesModels[0])" ng-model="serotypesModels[0].value"><font style="font-weight:bold;color:#cc1719;">O &nbsp;&nbsp;&nbsp;</font></ion-checkbox>
+			  	<ion-checkbox class="checkbox-dark" ng-change="getSeroPools(serotypesModels[3])" ng-model="serotypesModels[3].value"><font style="font-weight:bold;color:#ffdc00;">SAT 1</font></ion-checkbox>
+			  	<ion-checkbox class="checkbox-dark" ng-change="getSeroPools(serotypesModels[4])" ng-model="serotypesModels[4].value"><font style="font-weight:bold;color:#6a68ac;">SAT 2</font></ion-checkbox>
+			</div>
+		</div>
+		<div class="padding-top" ng-if="seroIsSelected">	  	
+		  	<h5 class="checkbox-title">POOLS</h5>
+			<div class="checkboxes"> 	
+			  	<ion-checkbox class="checkbox-dark" ng-repeat="pool in SeroZones | orderBy: 'name'" ng-disabled="pool.stat" ng-model="pool.value" ng-change="addPools(pool)">{{ pool.name }}</ion-checkbox>
+			</div>
+		</div>
+		<div class="padding-top" ng-if="seroIsSelected">  	
+		  	<h5 class="checkbox-title">SOUCHES VACCINALES</h5>
+			<div class="checkboxes"> 	
+			  	<ion-checkbox class="checkbox-dark" ng-disabled="poolsModels.length === 0 || souche.stat" ng-repeat="souche in SeroSouches" ng-model="souche.value" ng-change="getSoucheCoulors(souche)">{{ souche.name }}</ion-checkbox>
+			</div>
+		</div>
+	  </div>
+	  <div class="col-50 visuel">
+	  	<div ng-if="selectedSouches.length>0"><canvas id="canvas" mg-draw width=406 height=406 informations="cercle"></canvas>
+	  		  	<p style="text-align:center;">Source: Merial vaccine matching test 2014 - 2016</p></div>
+	  	    <div class="matching-inf"  ng-if="selectedSouches.length>0">
+      <span><span><div class="green"></div>r1 value &ge; 0.3</span>
+            <span><div class="orange"></div>Borderline</span></span>
+      <span><span><div class="red"></div>r1 value < 0.3</span>
+            <span><div class="gray"></div>Not tested</span></span>
+    </div>
+	  </div>
+	</div>
+	<div class="center-right-inv"><a href="#/app/potency" class="">
+		<span style="display: inline-block;">POTENCY <span style="margin-left:5px" class="ion-chevron-down"></span> </span></a>
+	</div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,84 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content>
+
+    <ion-nav-bar class="bar-custom" ng-hide="$state.current.name === 'app.home'">
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="right">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <div class="triangle"ng-hide="$state.current.name === 'app.home'"></div>
+
+    <ion-header-bar class="bar-subheader" ng-if="$state.current.name === 'app.map'">
+      <div class="row">
+          <div class="col col-60" style="padding-top: 10px;">
+            <p class="heading">Dynamics of FMD epidemiological pressure in the Middle East, Africa and Asia</p>
+            <p>In 2014, 2015 and 2016</p>
+          </div>
+          <div class="col-40 selectboxes">
+              <div class="selectbox">
+                <div class="select-title">SEROTYPES</div>
+                    <select ng-model="_selectedSerotype" id="serotypes" ng-change="showSerotypes(_selectedSerotype)">
+                      <option ng-selected="$first" ng-repeat="sero in serotypes">{{ sero }}</option>
+                    </select>
+              </div>
+              <div class="selectbox">
+                <div class="select-title">POOLS</div>              
+                    <select ng-model="_selectedPool" id="pools" ng-change="showPools(_selectedPool)">
+                      <option ng-selected="$first" ng-repeat="pool in pools">{{ pool }}</option>
+                    </select>
+              </div>
+          </div>
+      </div>
+    </ion-header-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+
+    <div class="svg-inf" ng-if="$state.current.name === 'app.map'">
+      <div class="info-title">LEGENDE</div>
+      <span><div class="yellow"></div><span style="max-width:150px;">Zones without an OIE official status</span></span>
+      <span><div class="green"></div><span style="max-width:150px;">FMD-free countries and zones</span></span>
+    </div>
+
+    <div class="svg-ctrl" ng-if="$state.current.name === 'app.map'">
+      <img mg-zoom-in src="img/zoomin.png">
+      <img mg-zoom-out src="img/zoomout.png">
+    </div>
+
+    <ion-footer-bar class="footer">
+      <p>The foot and mouth disease vaccine <b style="font-weight: bold;">you can trust</b></p>
+      <a href="#/app/home"><img src="img/logo.png"></a>
+    </ion-footer-bar>
+  </ion-side-menu-content>
+
+  <ion-side-menu class="menu" side="right">
+    <ion-header-bar class="bar-none">
+      <button class="button button-icon button-clear ion-navicon btn-sidebar pull-right" menu-toggle="right">
+      </button>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list class="menu-list">
+        <ion-item menu-close class="item" href="#/app/map">
+          <span>MAP</span>
+        </ion-item>
+        <ion-item class="item divider"></ion-item>
+        <ion-item menu-close class="item" href="#/app/matching">
+          <span>VACCINE</span> <br> <span class="mt10">STRAINS</span>
+        </ion-item>
+        <ion-item class="item divider"></ion-item>
+        <ion-item menu-close class="item" href="#/app/potency">
+          <span>POTENCY</span>
+        </ion-item>
+        <ion-item class="item divider"></ion-item>
+        <ion-item menu-close class="item" href="#/app/flexible-vaccines">
+          <span>FLEXIBLE</span> <br> <span class="mt10">VACCINES</span>
+        </ion-item>
+        <ion-item class="item divider"></ion-item>
+        <ion-item menu-close class="item" href="#/app/services">
+          <span>SERVICES</span>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
